@@ -30,7 +30,6 @@ class ShoppingCart:
     def __init__(self, cart_id: str, user_id: str):
         self.cart_id = cart_id
         self.user_id = user_id
-
         self.items: list[Product] = []
         self.item_ids: set[str] = set()
 
@@ -43,7 +42,6 @@ class ShoppingCart:
 
         self.item_ids.add(product.product_id)
         self.items.append(product)
-
         return True
 
     def calculate_subtotal(self) -> float:
@@ -55,11 +53,7 @@ class OrderClearinghouse:
         self.gateway_balance = gateway_balance
         self.processed_orders: dict[str, float] = {}
 
-    def _record_transaction(
-        self,
-        cart_id: str,
-        amount: float
-    ) -> None:
+    def _record_transaction(self, cart_id: str, amount: float) -> None:
         self.processed_orders[cart_id] = amount
         self.gateway_balance += amount
 
@@ -84,5 +78,4 @@ class OrderClearinghouse:
             final_amount = final_amount * 0.80
 
         self._record_transaction(cart.cart_id, final_amount)
-
         return True
