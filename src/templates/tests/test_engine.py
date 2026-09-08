@@ -51,3 +51,5 @@ def test_duplicate_cart_id_rejected():
     assert first_result is True
     assert second_result is False
     assert clearinghouse.gateway_balance == initial_balance
+
+
